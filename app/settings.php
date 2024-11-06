@@ -22,17 +22,17 @@ return function (ContainerBuilder $containerBuilder) {
                     'level' => Logger::DEBUG,
                 ],
                 'database' => [
-                    'dsn' => 'mysql:host=localhost;dbname=shop_new;charset=utf8;port=3306',
+                    'dsn' => 'mysql:host='.$_ENV['DB_HOST'].';dbname='.$_ENV['DB_NAME'].';charset=utf8;port=3306',
                     'driver' => 'pdo_mysql',
-                    'user' => 'root',
-                    'password' => 'chengyi94',
+                    'user' => $_ENV['DB_USER'],
+                    'password' => $_ENV['DB_PASS'],
                     'charset' => 'utf8mb4'
                 ],
                 'cache' => [
                     'driver' => 'redis',
                     'link' => [
                         'redis' => [
-                            'dsn' => 'redis://localhost:6379/3'
+                            'dsn' => 'redis://localhost:6379/'.$_ENV['REDIS_DATABASE']
                         ]
                     ],
                     'dir' => SYS_ROOT.'/var/cache/',
@@ -48,13 +48,13 @@ return function (ContainerBuilder $containerBuilder) {
                 ],
 				'pay' => [
 					'paypal' => [
-						'username' => 'PALPAL-DEV',
-						'password' => 'PASSWORD',
-						'signature' => 'SIGNATURE',
-						'currency' => 'HKD'
+						'username' => $_ENV['PAY_PAYPAL_USERNAME'],
+						'password' => $_ENV['PAY_PAYPAL_PASSWORD'],
+						'signature' => $_ENV['PAY_PAYPAL_SIGNATURE'],
+						'currency' => $_ENV['PAY_PAYPAL_CURRENCY']
 					],
 					'stripe' => [
-						'apikey' => 'stripe APIKEY'
+						'apikey' => $_ENV['PAY_STRIPE_APIKEY']
 					]
 				]
             ]);
