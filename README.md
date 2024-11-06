@@ -29,3 +29,6 @@ set config at
 ## WEB SERVER config
 
 readme: https://www.slimframework.com/docs/v4/start/web-servers.html
+
+
+## ADMIN PANEL NEED INSTALL OTHER PROGRAM
